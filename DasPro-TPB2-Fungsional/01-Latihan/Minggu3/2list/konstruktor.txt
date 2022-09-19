@@ -1,0 +1,21 @@
+-- DEFINISI DAN SPESIFIKASI KONSTRUKTOR 1
+konso :: <type_elemen> -> [<type_elemen>] -> [<type_elemen>]
+    {- konso(e,l) menghasilkan sebuah list dari e (sebuah <type_elemen>) dan l (list of <type_elemen>), dengan e sebagai elemen pertama : e o l -> l' -}
+
+-- REALISASI
+konso e l = [e] ++ l
+
+
+-- DEFINISI DAN SPESIFIKASI KONSTRUKTOR 2
+konsDot :: [<type_elemen>] -> <type_elemen> -> [<type_elemen>]
+    {- konsDot(l,e) menghasilkan sebuah list dari l (list of <type_elemen> dan e (sebuah <type_elemen>) dengan e sebagai elemen terakhir : l o e -> l' -}
+
+-- REALISASI
+konsDot l e = l ++ [e]
+
+
+-- li : list of integer
+-- lc : list of charachter
+
+-- APLIKASI
+-- konso 1 [2,3,4]

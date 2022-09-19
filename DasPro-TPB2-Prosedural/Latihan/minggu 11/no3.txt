@@ -1,0 +1,34 @@
+KAMUS
+    constant NMax : integer = 100
+    type MatKul : < KodeMK     : integer, 
+                    NamaMK     : string, 
+                    Pengajar   : string, 
+                    JmlPeserta : integer[0..100] >
+
+    type TabMatKul : 
+        < TM : array [1..NMax] of MatKul,
+            NELMT : integer { nilai efektif [0..NMax], 0 jika tabel kosong } >
+
+    function IdxPengajarMK (P : string, T : TabMatKul) -> integer
+    {fungsi menghasilkan indeks di mana P ditemukan terakhir kali di T, atau 0 jika P tidak ditemukan di T}
+
+
+{FUNGSI/PROSEDUR}
+
+    function IdxPengajarMK (P : string, T : TabMatKul) -> integer
+    {fungsi menghasilkan indeks di mana P ditemukan terakhir kali di T, atau 0 jika P tidak ditemukan di T}
+
+    KAMUS LOKAL
+        i, IMax : integer
+
+    ALGORITMA
+        if T.NELMT = 0 then
+            output(0)
+        else 
+            IMax <- 1
+            i <- 2
+            while i <= T.NELMT do
+                if T.TM.[i] = P then
+                    IMax <- i
+                i <- i + 1
+            output(IMax)

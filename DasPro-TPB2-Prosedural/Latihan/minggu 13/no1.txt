@@ -1,0 +1,19 @@
+KAMUS 
+    type rekamanMHS : < NIM : string, nilai : integer> 
+    constant mark : rekamanMHS = <“99999999”, 99>
+    f : SEQFILE of
+        (*) cc : rekamanMHS
+        (1) mark
+    
+ALGORITMA
+    assign(f, "rekaman.dat")
+    open(f,cc)
+    if (cc.NIM = “99999999” and cc.nilai = 99) then
+        output("File kosong")
+    else
+        repeat
+            if (cc.nilai >= 80) then
+                output(cc)
+                read(f,cc)
+            until (cc.NIM = “99999999” and cc.nilai = 99)
+    close(f)

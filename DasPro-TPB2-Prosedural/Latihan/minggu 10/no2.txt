@@ -1,0 +1,23 @@
+Program Nilai UTS
+{ Spesifikasi Program: membaca sejumlah nilai UTS mahasiswa di suatu kelas. 
+Nilai UTS yang valid adalah 0..100. Pembacaan dihentikan jika masukan nilai UTS di luar range nilai yang diizinkan
+Di akhir program dihitung dan ditampilkan rata-rata nilai UTS seluruh mahasiswa di kelas. }
+
+KAMUS
+    x : integer[0..100] {nilai UTS}
+    sum, n : integer
+
+ALGORITMA
+    input (x)
+    if (x < 0) or (x > 100) then
+        output (“Tidak ada data”)
+    else { 0 <= x <= 100 }
+        sum <- 0
+        n <- 0
+        repeat
+            sum <- sum + x
+            n <- n + 1
+            input (x)
+        until (x < 0) or (x > 100)
+        output ("Nilai rata-rata UTS = ", sum/n)
+            

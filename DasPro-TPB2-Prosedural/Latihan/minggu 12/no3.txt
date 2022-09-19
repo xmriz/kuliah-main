@@ -1,0 +1,28 @@
+procedure InputTerurut (input/output T: TabInt; inputX : integer)
+{X dimasukan pada T.TabInt secara terurut membesar}
+
+KAMUS LOKAL 
+    adaTempat : Boolean
+    idX, pass, temp1, temp2, i : integer
+
+ALGORITMA
+    if T.Neff > 0 then
+        adaTempat <- false
+        pass traversal [1…T.Neff]
+            if X < T.TAb[pass] and not adaTempat then
+                idX <- pass
+                temp1 <- T.Tab[pass]
+                T.Tab[pass] <- X
+                adaTempat <- True
+        T.Neff <- T.Neff +1
+        if adaTempat then
+        i transversal [(idX+1)..T.neff]
+            temp2 <- T.Tab[i] 
+            T.Tab[i] <- temp1
+            temp1 <- temp2
+        else
+            T.Tab[T.Neff] <-X
+
+    else
+        T.Tab[0] <- X
+        T.Neff <- T.Neff + 1

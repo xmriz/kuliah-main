@@ -1,0 +1,20 @@
+procedure UrutTabMhs (input/output TMhs : TabMhs)
+{mengurutkan TMhs terurut mengecil}
+
+KAMUS LOKAL
+    pass, i, iMax : integer
+    temp : TMahasiswa
+
+ALGORITMA
+    if (TMhs.Neff > 1) then
+        pass traversal [1..(TMhs.Neff-1)]
+        {menentukan Maximum [pass..(TMhs.Neff)}
+            iMax <- pass
+            i traversal [pass..(TMhs.Neff)]
+                if TMhs.TM[i].Nilai > TMhs.TM[iMax].Nilai Then
+                    iMax <- i
+            {Nilai maks sudah ditemukan}
+            temp <- TMhs.TM[pass]
+            TMhs.TM[pass] <- TMhs.TM[iMax]
+            TMhs.TM[iMax] <- temp
+

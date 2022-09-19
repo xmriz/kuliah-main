@@ -1,0 +1,9 @@
+game_id;nama;harga;user_id;tahun_beli
+GAME001;ITB Impact;50000;Kenz;2020
+GAME001;ITB Impact;50000;Cath;2021
+GAME001;ITB Impact;50000;Amir;2021
+GAME002;Kuliah Nightmares;70000;Amir;2020
+GAME002;Kuliah Nightmares;70000;Kenz;2020
+GAME003;Dosen vs Mahasiswa;30000;Wentun;2019
+GAME003;Dosen vs Mahasiswa;30000;Don;2020
+GAME004;Final Exam VI;50000;Amriz;2020

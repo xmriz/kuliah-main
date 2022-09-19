@@ -1,0 +1,1 @@
+python -u "d:\Coding\Python\09 - DasPro TPB2\PRAK6\ratasaham.py"

@@ -1,0 +1,33 @@
+KAMUS
+    type rekamanMHS : < NIM : integer, nilai : integer>
+    constant mark : rekaman = <“99999999”, 99>
+    f1 : SEQFILE of
+        (*) I1 : rekamanMHS
+        (1) mark
+    f2 : SEQFILE of
+        (*) I1 : rekamanMHS
+        (1) mark
+    FOut : SEQFILE of
+        (*) I1 : rekamanMHS
+        (1) mark
+    
+
+ALGORITMA
+    assign(f1, "rekmhs1.dat")
+    open(f1, I1)
+    assign(f2, "rekmhs2.dat")
+    open(f2, I2)
+    assign(FOut, "rekmhs.dat")
+    rewrite(FOut)
+
+    while (I1.NIM /= mark.NIM) and (I2.NIM /= mark.NIM) do
+        if (I1.NIM <= I2.NIM) then
+            write(FOut, I1.NIM)
+            read(f1, I1)
+        else
+            write(FOut, I2.NIM)
+            read(f2, I2)
+
+    close(f1)
+    close(f2)
+    close(FOut)

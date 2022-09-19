@@ -1,0 +1,10 @@
+daftar nim:
+    ada NIM 13215001 dan NIM 13515010
+
+nilai rata-rata:
+    NIM 13215001:
+        (90 + 85)/2 = 87.5
+    NIM 13215010:
+        =(88 + 93 + 80 + 71)/4 = 83
+        
+mark : elemen terakhir list

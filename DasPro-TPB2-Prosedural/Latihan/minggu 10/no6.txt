@@ -1,0 +1,14 @@
+Program NamaProgram
+{ Spesifikasi Program:  }
+
+KAMUS
+    type pecahan : < pembilang : integer
+                     penyebut : integer>0 >
+    P1, P2 : pecahan
+
+ALGORITMA
+    input(P1,P2)
+    while (P1.penyebut <= 0) or (P2.penyebut <= 0) do
+        input(P1,P2)
+    output((P1.pembilang * P2.penyebut), "/" ,(P2.pembilang * P1.penyebut))
+    output(((P1.pembilang*P2.penyebut)-(P2.pembilang*P1.penyebut)), "/", (P2.penyebut*P1.penyebut))

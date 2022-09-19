@@ -1,0 +1,63 @@
+{Program No.2}
+KAMUS
+    constant NMax : integer = 366
+    type TabSuhu : < Tab : array [1..NMax] of real;
+                     Neff : integer > { Bernilai >=0, merupakan nilai efektif array;
+                                      Neff=0 berarti array kosong }
+
+{FUNGSI/PROSEDUR}
+    procedure InputTabSuhu (output T : TabSuhu, input N : integer)
+    {I.S. T belum terisi}
+    {F.S. T sudah terisi dengan elemen sebanyak N buah}
+
+    KAMUS LOKAL
+        i : integer[1..N]
+
+    ALGORITMA
+        T.Neff <- N	
+        i traversal [1..N]
+            input(T.Tab[i])
+
+    procedure PrintGtX(input T : TabSuhu, input X : real)
+    {I.S. T terdefinisi}
+    {F.S. seluruh elemen T yang lebih besar dari X dicetak}
+
+    KAMUS LOKAL
+        i : integer[1..N]
+
+    ALGORITMA
+        i traversal [1..T.Neff]
+            if T[i] > X then 
+                output(“Suhu pada hari ke-”, i, “ adalah ”, T[i])
+
+    function FindMax (T : TabSuhu) → real
+    {fungsi menghasilkan nilai suhu terbesar yang disimpan di T}
+
+    KAMUS LOKAL
+        max : real
+        i : integer[2..T.Neff]
+
+    ALGORITMA
+        max <- T[1]
+        i traversal [2..T.Neff]
+            if T[i] > max then
+                max <- T[i]
+
+    function SearchGtX(T : TabSuhu) → real
+    {fungsi menghasilkan true jika ada data di T yang bernilai > X (false jika tidak)}
+
+    KAMUS LOKAL
+        i : integer
+
+    ALGORITMA
+        if T.Neff = 0 then
+            output(false)
+        else
+            found <- false
+            i <- 1
+            while (i <= N) and (found = false) do
+                if T.Tab[i] > X then
+                    found <- true
+                else
+                    i <- i + 1
+            output(found)

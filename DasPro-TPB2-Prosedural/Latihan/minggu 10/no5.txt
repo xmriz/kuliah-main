@@ -1,0 +1,22 @@
+Program NamaProgram
+{ Spesifikasi Program: Program yang menerima tiga buah nilai resistor r1,r2,r3, berupa bilangan integer >= 0 dan menghitung nilai 
+resistansi total bergantung pada jenis rangkaian masukan }
+
+KAMUS
+    r1,r2,r3 : integer >= 0
+    jenis : character
+
+ALGORITMA
+    input (r1,r2,r3)
+    input(jenis)
+    while (jenis != "s") or (jenis != "p") or (jenis != "S") or (jenis != "P") do
+        input(jenis)
+    if (jenis = "s") or (jenis = "S") then
+        while (r1<=0) or (r2<=0) or (r3<=0) do
+            input (r1,r2,r3)
+        output (r1+r2+r3)
+    else if (jenis = "p") or (jenis = "P") then
+        while (r1<0) or (r2<0) or (r3<0) do
+            input (r1,r2,r3)
+        output (1/(1/r1 + 1/r2 + 1/r3))
+    

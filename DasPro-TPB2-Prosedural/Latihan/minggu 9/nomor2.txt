@@ -1,0 +1,75 @@
+nomor baki 1 sd 40
+rentang harga 5000 sd 20000 /kelipatan 5000
+jumlah barang 1 sd 10
+
+Program vendingMachine
+{ Sebuah program mesin jaja (vending machine) minuman kaleng menyimpan data sejumlah baki/tray (penampung barang yang dijual). 
+Untuk setiap baki disimpan: nomor baki (integer, 1 s.d. 40), harga barang (integer, 5000 s.d. 20000, dan harus kelipatan 5000), 
+dan jumlah barang (integer, 0 s.d. 10). Data baki disimpan dalam suatu array of baki dengan banyaknya baki maksimum adalah 40. }
+
+KAMUS
+    constant NMax : integer = 40
+    type Matriks : array [1..NMax] of array [1..2] of integer
+        N : integer
+    i : integer
+
+ALGORITMA
+    
+    { FUNGSI PROSEDUR }
+
+    procedure loading(output Baki : Matriks)
+    { I.S. : M sembarang dan N adalah integer diantara 1 s.d. 40 }
+    { F.S. : Terbentuk array of integer B }
+
+    KAMUS LOKAL
+        i, j : integer
+        N : integer[1..40]
+
+    ALGORITMA
+        input(N)
+        i traversal (1..N)
+            j traversal (1..2)
+                input(Baki[i][j])
+            if ((Baki[i][1] < 5000) and (Baki[i][1] > 20000) and (Baki[i][1] mod 5000 != 0)) or ((Baki[i][2] < 1) and (Baki[i][2] > 10)) then
+                j traversal (1..2)
+                    input(Baki[i][j])
+
+
+    procedure operation(input/output Baki : Matriks)
+    { I.S. : Baki sudah terdefinisi sebelumnya }
+    { F.S. : nilai Baki berubah berdasarkan perintah dari user }
+
+    KAMUS LOKAL
+        nomorBaki : integer
+
+    ALGORITMA
+        input(nomorBaki)
+        if M[nomorBaki][2] > 0 then
+            M[nomorBaki][2] <- M[nomorBaki][2] - 1
+
+
+    procedure checkBaki(output count : integer)
+    { I.S. : count sembarang }
+    { F.S. : nilai count bergantung pada masukan user}
+
+    KAMUS LOKAL
+    i : integer
+
+    ALGORITMA
+    count <- 0
+    i traversal [1..N]
+        if M[i][2] != 0 then
+            count <- count + 1
+    
+
+
+    { PROGRAM UTAMA }
+
+    loading()
+    checkBaki()
+    i traversal [1..N]
+        if count != 0 then
+            operation()
+        else
+            output("Semua baki telah kosong!!!")
+

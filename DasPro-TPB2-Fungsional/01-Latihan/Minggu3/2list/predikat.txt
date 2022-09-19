@@ -1,0 +1,14 @@
+-- DEFINISI DAN SPESIFIKASI PREDIKAT
+isEmpty :: [<type_elemen>] -> Bool
+-- isEmpty l  true jika list of <type_elemen> l kosong
+-- REALISASI
+isEmpty l = null l
+
+isOneElmt :: [<type_elemen>] -> Bool
+-- isOneElmt l true jika list of <type_elemen> l hanya mempunyai satu elemen
+-- REALISASI
+isOneElmt l = (length l) == 1
+
+
+-- li : list of integer
+-- lc : list of charachter

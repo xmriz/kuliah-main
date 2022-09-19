@@ -1,0 +1,68 @@
+Program compareLuasSegiEmpat
+{ Input: 2 SegiEmpat yang tiap segiempat berisi titik awal dan titik akhir, dimana keuda titik tidak boleh memiliki x atau y yang sama }
+{ Output : 	Jika luas S1 > luas S2, program menampilkan: “SegiEmpat pertama lebih luas daripada SegiEmpat kedua”
+		Jika luas S1 < luas S2, program menampilkan: “SegiEmpat kedua lebih luas daripada SegiEmpat pertama”
+		Jika luas S1 = luas S2, program menampilkan: “Luas SegiEmpat sama” }
+
+KAMUS
+	type SegiEmpat : array [1..2] of array [1..2] of integer
+	i, j : integer
+
+ALGORITMA
+
+	procedure inputSegiEmpat (output M : SegiEmpat)
+	{ I.S. M sembarang}
+	{ F.S. M berisi data SegiEmpat berdasarkan masukan dari user }
+		
+	KAMUS LOKAL
+		i, j : integer
+
+	ALGORITMA
+		i traversal [1..2]
+			j traversal [1..2]
+				input(M[i][j])
+
+
+	function validasiSegiEmpat (M : SegiEmpat) -> boolean
+	{ menghasilkan true jika M memenuhi syarat SegiEmpat}
+
+	KAMUS LOKAL
+		i, j, count : integer
+		
+	ALGORITMA
+		if ((M[1][1] = M[2][1]) or (M[1][2] = M[2][2])) then
+			count <- count + 1)
+		-> (count = 0)
+
+
+	function abs(n : integer) -> integer
+    { menghasilkan nilai mutlak dari suatu integer masukan }
+
+    KAMUS LOKAL
+
+    ALGORITMA
+		if (n < 0) then
+			-> -n
+		else
+			-> n
+	
+
+	function luasSegiEmpat (M : SegiEmpat) -> integer
+    { menghasilkan luas dari SegiEmpat yang diberikan }
+
+    KAMUS LOKAL
+
+    ALGORITMA
+        -> abs(M[1][1] - M[2][1]) * abs(M[1][2] - M[2][2])
+
+
+	inputSegiEmpat(A)
+	inputSegiEmpat(B)
+	
+	if ((validasiSegiEmpat(A) or (validasiSegiEmpat(B))) then
+		depend on (luasSegiEmpat(A), luasSegiEmpat(B))
+            (luasSegiEmpat(A) > luasSegiEmpat(B)) : output(“SegiEmpat pertama lebih luas daripada SegiEmpat kedua”)
+            (luasSegiEmpat(A) < luasSegiEmpat(B)) : output(“SegiEmpat kedua lebih luas daripada SegiEmpat pertama”)
+        else : output ("Luas SegiEmpat sama")
+	else
+		output("Masukkan titik tidak memenuhi aturan SegiEmpat!!!")

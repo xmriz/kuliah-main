@@ -1,0 +1,26 @@
+Program NamaProgram
+{ Spesifikasi Program: program dalam notasi algoritmik, untuk membaca nilai UTS dan nilai UAS mahasiswa untuk setiap pelajaran 
+yang diikutinya (0..100) dan diakhiri jika nilai masukan UTS di luar range nilai yang diizinkan, kemudian menghitung 
+dan mencetak rata-rata nilai akhir dari seluruh pelajaran. }
+
+KAMUS
+    uts, uas : integer[0..100]
+    sumNilaiAkhir, n : integer
+
+ALGORITMA
+    input (uts)
+    if (uts < 0) or (uts > 100) then
+        output ("Data kosong, tidak ada nilai rata-rata !")
+    else
+        sumNilaiAkhir <- 0
+        n <- 0
+        repeat
+            iterate
+                input (uas)
+            stop (uas >= 0) or (uas <= 100)
+                output("Ulangi input nilai (0..100)!")
+            sumNilaiAkhir <- sumNilaiAkhir + (0.4 * uts) + (0.6 * uas)
+            n <- n+1
+            input (uts)
+        until (uts < 0) or (uts > 100)
+        output("Nilai rata-rata dari", n, "pelajaran adalah", (sumNilaiAkhir/n))
