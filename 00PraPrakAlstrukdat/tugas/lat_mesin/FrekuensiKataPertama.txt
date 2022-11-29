@@ -1,0 +1,30 @@
+Program FrekuensiKataPertama
+
+KAMUS
+    use MesinKata
+
+    lengthTotalKata: integer
+    kataPertama: Kata.TabKata
+    nKataPertama: integer
+
+ALGORITMA
+    lengthTotalKata ← 0
+    nKataPertama ← 0
+    startKata
+    if (currentKata.length = 0) then
+        output ("Pita kosong")
+    else
+        kataPertama ← currentKata
+        nKataPertama ← nKataPertama + 1
+        lengthTotalKata ← lengthTotalKata + 1
+        i ← 1
+        while (not endKata) do
+            advKata
+            if (currentKata.TabKata[i] = kataPertama) then
+                nKataPertama ← nKataPertama + 1
+            lengthTotalKata ← lengthTotalKata + 1
+        output (nKataPertama,"/",lengthTotalKata)
+
+
+
+        

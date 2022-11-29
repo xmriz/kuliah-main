@@ -1,0 +1,23 @@
+{Nomor 3}
+
+type ElType : integer
+type Address : pointer to node
+type node : <info: integer, 
+            next : Address>
+type List : <First : Address,
+            Last : Address>
+
+function search(l: list, x: ElType) → boolean
+{fungsi search untuk mengetahui apakah sebuah nilai x terdapat dalam sebuah list l, dengan elemen terakhir dummy}
+KAMUS LOKAL
+    p : Address
+ALGORITMA
+    last↑.info <- x
+    p ← l.first
+    while p↑.info ≠ x do
+        p ← p↑.next
+    if p = l.last then
+        return false
+    else
+        return true
+    

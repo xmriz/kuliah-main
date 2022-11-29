@@ -1,0 +1,38 @@
+type ElType : integer
+type Address : pointer to node
+type node : <info: integer, 
+            next : Address>
+type List : <First : Address,
+            Last : Address>
+
+{Nomor 1}
+
+procedure insertFirst(input/output l: List, input x: ElType)
+{I.S. l terdefinisi, mungkin kosong
+ F.S. x menjadi elemen pertama l}
+KAMUS LOKAL
+    p : Address
+ALGORITMA
+    p ← newNode(x)
+    if (p ≠ Nil) then
+        if l.First = Nil then
+            l.Last ← p
+        else
+            p↑.next ← l.First
+        l.First ← p
+
+{Nomor 2}
+
+procedure insertLast(input/output l: List, input x: ElType)
+{I.S. l terdefinisi, mungkin kosong
+ F.S. x menjadi elemen terakhir l}
+KAMUS LOKAL
+    p : Address
+ALGORITMA
+    p ← newNode(x)
+    if (p ≠ Nil) then
+        if l.First = Nil then
+            l.First ← p
+        else
+            l.Last↑.next ← p
+        l.Last ← p

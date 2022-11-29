@@ -1,0 +1,64 @@
+NOMOR 1
+
+Program CircularBuffer
+{bagian a}
+
+KAMUS UMUM
+constant IDX_UNDEF : integer = -1
+constant CAPACITY : integer = 100
+
+type ElType = <id: integer, cost: integer> {elemen Queue}
+
+{Queue dengan array statik}
+type Queue: < T : array [0..CAPACITY-1] of ElType,
+            idxHead : integer, {indeks elemen terdepan}
+            count : integer > {menggantikan ekspresi idxTail (banyak elemen Queue)}
+
+{bagian b}
+function isFull(q: Queue) -> boolean
+{mengirim true jika q penuh}
+    → q.count = CAPACITY
+
+{bagian c}
+procedure enqueue(input/output q: Queue, input val: Eltype)
+{Proses: menambahkan val pada q sebagai Tail baru}
+{IS: q mungkin kosong, q tidak penuh}
+{FS: val menjadi Tail baru dengan mekanisme circular buffer}
+ALGORITMA
+    q.T[q.idxHead + q.count mod CAPACITY] = val
+    q.count ← q.count + 1
+
+{bagian d}
+procedure dequeue(input/output q: queue, output val: ElType)
+{Proses: menyimpan nilai Head q ke val dan menghapus Head q}
+{IS: q tidak kosong}
+{FS: val adalah nilai elemen Head, Head “bergerak” dengan mekanisme circular 
+    buffer. q mungkin kosong}
+ALGORITMA
+    val ← q.T[q.idxHead]
+    q.idxHead ← (q.idxHead + 1) mod CAPACITY
+    q.count ← q.count - 1
+
+
+NOMOR 2
+
+procedure roundRobin (input/output q: queue, input t: integer)
+{Proses: memproses elemen antrian q secara round robin}
+{IS: q tidak kosong, t adalah waktu yang tersedia untuk memproses setiap elemen}
+{FS: elemen e pada posisi HEAD dihapus dari q.
+    Jika cost e ≤ t maka ditampilkan “<id> telah selesai diproses”.
+    Jika cost e > t maka e disisipkan kembali sebagai tail q
+    dengan cost berkurang sebesar t }
+KAMUS LOKAL
+    e: ElType
+ALGORITMA
+    dequeue(q, e)
+    if e.cost <= t then
+        print(e.id, "telah selesai diproses")
+    else
+        e.cost ← e.cost - t
+        enqueue(q, e)
+
+
+
+

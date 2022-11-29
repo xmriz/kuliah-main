@@ -1,0 +1,60 @@
+Program MesinKata
+
+KAMUS UMUM
+    use MesinKAR
+
+{Konstanta}
+constant MARK: character = '.';
+constant BLANK: character = ' ';
+constant N_MAX: integer = 50;
+
+{Definisi Type Kata}
+type Kata: < TabKata: array [0..N_MAX-1] of character, Length: integer>
+
+{Definisi State Mesin Kata}
+endKata: boolean
+currentKata: Kata
+
+{Primitif-primitif Mesin Kata}
+procedure ignoreBlank
+{I.S. CC sembarang}
+{F.S. CC ≠ BLANK atau CC = MARK}
+ALGORITMA
+    while (CC = BLANK) do
+        ADV
+
+procedure startKata
+{I.S. CC sembarang}
+{F.S. EndKata = true, dan CC = Mark atau EndKata = false, currentKata adalah kata yang sudah diakuisisi, CC karakter pertama sesudah karakter terakhir kata}
+ALGORITMA
+    START
+    ignoreBlank
+    if (CC = MARK) then
+        endKata ← true
+    else
+        endKata ← false
+        salinKata
+
+procedure advKata
+{I.S. EndKata = false; CC adalah karakter sesudah karakter terakhir yang sudah diakuisisi}
+{F.S. Jika CC = MARK, maka EndKata = true}
+{Jika CC ≠ MARK, CKata adalah kata terakhir yang sudah diakuisisi; CC karakter pertama sesudah karakter terakhir kata}
+ALGORITMA
+    ignoreBlank
+    if (CC = MARK) then
+        endKata ← true
+    else
+        salinKata
+
+procedure salinKata
+{I.S. CC adalah karakter pertama dari kata}
+{F.S. CKata berisi kata yang sudah diakuisisi, jika karakternya melebihi N_MAX, sisa "kata" dibuang; CC = BLANK atau CC = MARK; CC adalah karakter sesudah karakter terakhir yang diakuisisi}
+ALGORITMA
+    i ← 0
+    repeat
+        currentKata.TabKata[i] ← CC
+        ADV
+        i ← i + 1
+    until (CC = MARK) or (CC = BLANK)
+    currentKata.Length ← i
+

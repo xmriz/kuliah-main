@@ -1,0 +1,104 @@
+{NOMOR 2}
+Program EKSPRESI
+{ Menghitung sebuah ekspresi aritmatika yang ditulis secara postfix }
+
+USE STACK { paket stack sudah terdefinisi dgn elemennya bertipe token }
+
+KAMUS
+    type Token: < TabKata: array [0..N_MAX-1] of character, Length: integer>
+    s: Stack { stack of token }
+    currentToken, op1, op2: Token { token: operan ∪ operator }
+
+procedure firstToken
+{ Mengambil token yang pertama, disimpan di currentToken }
+ALGORITMA
+    START
+    ignoreBlank
+    if (not endToken) then
+        i ← 0
+        repeat
+            currentToken.TabKata[i] ← CC
+            nextToken
+            i ← i + 1
+        until (CC = MARK) or (CC = BLANK)
+        currentToken.Length ← i
+
+
+procedure nextToken
+{ Mengambil token yang berikutnya, disimpan di currentToken }
+ALGORITMA
+    ignoreBlank
+    if (not endToken) then
+        i ← 0
+        repeat
+            currentToken.TabKata[i] ← CC
+            nextToken
+            i ← i + 1
+        until (CC = MARK) or (CC = BLANK)
+        currentToken.Length ← i
+
+
+function endToken → boolean
+{ Menghasilkan true jika proses akuisisi mendapat hasil sebuah token kosong.
+Merupakan akhir ekspresi. }
+ALGORITMA
+    if (CC = MARK) then
+        endToken ← true
+    else
+        endToken ← false
+
+
+function isOperator → boolean
+{ Menghasilkan true jika currentToken adalah operator }
+ALGORITMA
+    if (currentToken.Length = 1) then
+        if (currentToken.TabKata[0] = '+') or
+           (currentToken.TabKata[0] = '-') or
+           (currentToken.TabKata[0] = '*') or
+           (currentToken.TabKata[0] = '/') then
+            isOperator ← true
+        else
+            isOperator ← false
+    else
+        isOperator ← false
+
+
+function evaluate(op1,op2,operator: token) → token
+{ Menghitung ekspresi, mengkonversi hasil menjadi token}
+KAMUS LOKAL
+    result: token
+    intop1, intop2, intresult: integer
+ALGORITMA
+    intop1 ← 0
+    intop2 ← 0
+    i traversal [0..op1.Length-1]
+        intop1 ← intop1 * 10 + (op1.TabKata[i] - '0')
+    i traversal [0..op2.Length-1]
+        intop2 ← intop2 * 10 + (op2.TabKata[i] - '0')
+    if (operator.TabKata[0] = '+') then
+        intresult ← intop1 + intop2
+    else if (operator.TabKata[0] = '-') then
+        intresult ← intop1 - intop2
+    else if (operator.TabKata[0] = '*') then
+        intresult ← intop1 * intop2
+    else if (operator.TabKata[0] = '/') then
+        intresult ← intop1 / intop2
+    result.TabKata ← intresult
+    result.Length ← length(intresult)  
+    
+
+ALGORITMA PROGRAM UTAMA
+    firstToken
+    if (endToken) then
+        output ("Ekspresi kosong")
+    else
+        repeat
+            if not isOperator then
+                push(s,currentToken)
+            else
+                pop(s,op2)
+                pop(s,op1)
+                push(s,evaluate(op1,op2, currentToken))
+            nextToken
+    until (endToken)
+    output (top(s)) { Menuliskan hasil }

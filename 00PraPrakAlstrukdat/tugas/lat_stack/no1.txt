@@ -1,0 +1,128 @@
+{ADT STACK}
+
+KAMUS UMUM
+constant IDX_UNDEF: integer = -1
+constant CAPACITY: integer = 10
+
+type ElType = integer { elemen Stack }
+
+{ Stack dengan array statik }
+type Stack: < buffer: array [1..CAPACITY] of ElType, { penyimpanan elemen }
+              idxTop : integer > { indeks elemen teratas}
+
+procedure CreateStack(output s: Stack)
+{ I.S. Sembarang
+F.S. Membuat sebuah Stack s yang kosong berkapasitas CAPACITY
+jadi indeksnya antara 0..CAPACITY-1
+Ciri stack kosong: idxTop bernilai IDX_UNDEF }
+
+KAMUS LOKAL
+-
+ALGORITMA
+s.idxTop ← IDX_UNDEF
+
+function isEmpty(s: Stack) → boolean
+{ Mengirim true jika Stack kosong: lihat definisi di atas }
+KAMUS LOKAL
+-
+ALGORITMA
+→ s.idxTop = IDX_UNDEF
+
+function isFull(s: Stack) → boolean
+{ Mengirim true jika penyimpanan s penuh }
+KAMUS LOKAL
+-
+ALGORITMA
+→ s.idxTop = CAPACITY-1
+
+procedure push(input/output s: Stack, input val: ElType)
+{ menambah val sebagai elemen teratas }
+KAMUS LOKAL
+-
+ALGORITMA
+s.idxTop ← s.idxTop + 1
+s.buffer[s.idxTop] ← val
+
+procedure pop(input/output s: Stack, output val: ElType)
+{ menghapus elemen teratas dan mengirimkan nilainya }
+KAMUS LOKAL
+-
+ALGORITMA
+val ← top(s)
+s.idxTop ← s.idxTop - 1
+
+
+{NOMOR 1}
+procedure copyStack(input sIn: Stack, output sOut: Stack)
+{ Membuat salinan sOut }
+{ I.S. sIn terdefinisi, sOut sembarang }
+{ F.S. sOut berisi salinan sIn yang identik }
+KAMUS LOKAL
+    tempStack: Stack
+ALGORITMA
+    CreateStack(tempStack)
+    CreateStack(sOut)
+    while not isEmpty(sIn) do
+        push(tempStack, top(sIn))
+        pop(sIn)
+    while not isEmpty(tempStack) do
+        push(sOut, top(tempStack))
+        push(sIn, top(tempStack))
+        pop(tempStack)
+
+
+procedure inverseStack(input/output s: Stack)
+{ Membalik isi suatu stack }
+{ I.S. s terdefinisi }
+{ F.S. Isi s terbalik dari posisi semula }
+KAMUS LOKAL
+    tempStack1: Stack
+    tempStack2: Stack
+ALGORITMA
+    CreateStack(tempStack1)
+    CreateStack(tempStack2)
+    while not isEmpty(s) do
+        push(tempStack1, top(s))
+        pop(s)
+    while not isEmpty(tempStack1) do
+        push(tempStack2, top(tempStack1))
+        pop(tempStack1)
+    while not isEmpty(tempStack2) do
+        push(s, top(tempStack2))
+        pop(tempStack2)
+
+
+function mergeStack(s1,s2: Stack) → Stack
+{ Menghasilkan sebuah stack yang merupakan hasil penggabungan s1
+    dengan s2 dengan s1 berada di posisi lebih “bawah”. Urutan kedua
+    stack harus sama seperti aslinya. }
+{ Stack baru diisi sampai seluruh elemen s1 dan s2 masuk ke dalam
+    stack, atau jika stack baru sudah penuh, maka elemen yang
+    dimasukkan adalah secukupnya yang dapat ditampung. }
+KAMUS LOKAL
+    tempStack: Stack
+    tempStack1: Stack
+    tempStack2: Stack
+    i: integer
+ALGORITMA
+    CreateStack(tempStack)
+    CreateStack(tempStack1)
+    CreateStack(tempStack2)
+    while not isEmpty(s1) do
+        push(tempStack1, top(s1))
+        pop(s1)
+    while not isEmpty(s2) do
+        push(tempStack2, top(s2))
+        pop(s2)
+    while not isEmpty(tempStack1) do
+        push(tempStack, top(tempStack1))
+        pop(tempStack1)
+    while not isEmpty(tempStack2) do
+        push(tempStack, top(tempStack2))
+        pop(tempStack2)
+    i ← 0
+    while not isEmpty(tempStack) and i < CAPACITY do
+        push(s1, top(tempStack))
+        pop(tempStack)
+        i ← i + 1
+    → tempStack

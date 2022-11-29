@@ -1,0 +1,38 @@
+Program Anagram
+
+KAMUS
+    use MesinKata
+
+    nAnagram : integer
+    kataPertama: Kata
+
+    function isAnagram(kata1: Kata; kata2: Kata) → boolean
+    KAMUS
+        i, j: integer
+        found: boolean
+        notfound: boolean
+    ALGORITMA
+        i traversal[0..kata1.Length-1]
+            found ← false
+            j traversal[0..kata2.Length-1]
+                if (kata1.TabKata[i] = kata2.TabKata[j]) then
+                    found ← true
+                    break
+            if (not found) then
+                notfound ← true
+                break
+        if (notfound) then
+            return false
+        else
+            return true          
+
+ALGORITMA
+    nAnagram ← 0
+    startKata
+    kataPertama ← currentKata
+    while (not EndKata) do
+        advKata
+        if (isAnagram(kataPertama, currentKata)) then
+            nAnagram ← nAnagram + 1
+        advKata
+    output (nAnagram)

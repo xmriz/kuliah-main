@@ -1,0 +1,16 @@
+Program PostfixtoInfix
+
+KAMUS
+    use MesinKata
+
+    operand : kata
+    operator : kata
+    stack : kata
+
+ALGORITMA
+    operator.length ← 0
+    operand.length ← 0
+    startKata
+
+
+
